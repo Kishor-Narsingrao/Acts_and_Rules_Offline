@@ -71,18 +71,7 @@ public class ActSectionDetailFragment_four extends Fragment implements ResultCal
             iBookInfoId = c.getInt(c.getColumnIndex("BookInfoId"));
 
             c.close();
-        }/*else
-        {
-            for(int i=0;i<globalList.getBookInformationSize();i++)
-            {
-                if(globalList.getBookInformation(i).getStrBookInfoName().equals(strSectionNo))
-                {
-                    iBookIndexId=globalList.getBookInformation(i).getiBookIndexId();
-                    iBookInfoId=globalList.getBookInformation(i).getiBookInfoId();
-                    break;
-                }
-            }
-        }*/
+        }
 
          c = db.rawQuery("select BookInfoName from BookInformation  where BookIndexId='"+iBookIndexId+"' and ParentBookId='"+iBookInfoId+"' and BookInformation.TypeId=1", null);
          rows = c.getCount();
@@ -93,16 +82,7 @@ public class ActSectionDetailFragment_four extends Fragment implements ResultCal
             tvSectionNo.setText(c.getString(c.getColumnIndex("BookInfoName")));
             c.moveToNext();
         }
-        /*else {
-            for(int i=0;i<globalList.getBookInformationSize();i++)
-            {
-                if(globalList.getBookInformation(i).getiBookIndexId() == iBookIndexId && globalList.getBookInformation(i).getiBookInfoId() == iBookInfoId && globalList.getBookInformation(i).getiTypeId() ==1)
-                {
-                    tvSectionNo.setVisibility(View.VISIBLE);
-                    tvSectionNo.setText(globalList.getBookInformation(i).getStrBookInfoName());
-                }
-            }
-        }*/
+
         c.close();
 
         c = db.rawQuery("select BookInfoName from BookInformation  where BookIndexId='"+iBookIndexId+"' and ParentBookId='"+iBookInfoId+"' and BookInformation.TypeId=2", null);
@@ -114,16 +94,7 @@ public class ActSectionDetailFragment_four extends Fragment implements ResultCal
             tvSectionHeader.setText(c.getString(c.getColumnIndex("BookInfoName")));
             c.moveToNext();
         }
-        /*else {
-            for(int i=0;i<globalList.getBookInformationSize();i++)
-            {
-                if(globalList.getBookInformation(i).getiBookIndexId() == iBookIndexId && globalList.getBookInformation(i).getiParentBookInfoId() == iBookInfoId && globalList.getBookInformation(i).getiTypeId() ==2)
-                {
-                    tvSectionHeader.setVisibility(View.VISIBLE);
-                    tvSectionHeader.setText(globalList.getBookInformation(i).getStrBookInfoName());
-                }
-            }
-        }*/
+
         c.close();
 
         c = db.rawQuery("select BookInfoName from BookInformation  where BookIndexId='"+iBookIndexId+"' and ParentBookId='"+iBookInfoId+"' and BookInformation.TypeId=3", null);
@@ -137,18 +108,7 @@ public class ActSectionDetailFragment_four extends Fragment implements ResultCal
             tvSectionContent.setText(strFormated);
             c.moveToNext();
         }
-        /*else {
-            for(int i=0;i<globalList.getBookInformationSize();i++)
-            {
-                if(globalList.getBookInformation(i).getiBookIndexId() == iBookIndexId && globalList.getBookInformation(i).getiParentBookInfoId() == iBookInfoId && globalList.getBookInformation(i).getiTypeId() ==3)
-                {
-                    tvSectionContent.setVisibility(View.VISIBLE);
-                    String strFormat=globalList.getBookInformation(i).getStrBookInfoName();
-                    String strFormated=strFormat.replace(".", "." + System.getProperty("line.separator")).replace("(a)",  System.getProperty("line.separator") + "(a)").replace("(b)", System.getProperty("line.separator") + "(b)").replace("(a&b)", System.getProperty("line.separator") + "(a&b)").replace("(c)", System.getProperty("line.separator") + "(c)").replace("(h)", System.getProperty("line.separator") + "(h)").replace("(g)", System.getProperty("line.separator") + "(g)").replace("(f)", System.getProperty("line.separator") + "(f)").replace("(e)", System.getProperty("line.separator") + "(e)").replace("(d)", System.getProperty("line.separator") + "(d)").replace("(i)", System.getProperty("line.separator") + "(i)").replace("(ii)", System.getProperty("line.separator") + "(ii)").replace("(iii)", System.getProperty("line.separator") + "(iii)").replace("(iv)", System.getProperty("line.separator") + "(iv)").replace("(v)", System.getProperty("line.separator") + "(v)");
-                    tvSectionContent.setText(strFormated);
-                }
-            }
-        }*/
+
         c.close();
         return  rootView;
     }

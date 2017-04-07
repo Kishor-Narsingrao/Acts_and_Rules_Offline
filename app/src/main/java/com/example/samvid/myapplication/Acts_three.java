@@ -79,17 +79,6 @@ public class Acts_three extends Fragment implements ResultCallBack {
             iBookId = c.getInt(c.getColumnIndex("BookIndexId"));
             c.close();
         }
-       /* else
-        {
-            for(int i=0;i<globalList.getBookIndexSize();i++)
-            {
-                if(globalList.getBookIndex(i).strBookIndexName.equals(strBookName))
-                {
-                    iBookId=globalList.getBookIndex(i).getiBookId();
-                    break;
-                }
-            }
-        }*/
 
         strURL = strURL + iBookId + "&paarentInfoId=null&typeId=null";
 
@@ -121,16 +110,6 @@ public class Acts_three extends Fragment implements ResultCallBack {
 
         c.close();
         db.close();
-
-        /*for (int i = 0; i < globalList.getBookInformationSize(); i++) {
-
-            if(globalList.getBookInformation(i).getiBookIndexId()== iBookId && globalList.getBookInformation(i).getiTypeId()==1) {
-                String strBoookName = globalList.getBookInformation(i).getStrBookInfoName();
-                alBookDetails.add(strBoookName);
-//                break;
-//            c.moveToNext();
-            }
-        }*/
 
 
         bookadapter = new BookDetailsAdapter(getActivity(), alBookDetails);
@@ -175,8 +154,6 @@ public class Acts_three extends Fragment implements ResultCallBack {
                 int iParentBookInfoId = jsonObjectChild.getInt("ParentBookInfoId");
                 int iTypeId=jsonObjectChild.getInt("TypeId");
 
-//                globalList.setBookInformation(new BookInformationModel(iBookInfoId,iBookIndexId,strBookInfoName,iParentBookInfoId,iTypeId));
-
                 Cursor c = db.rawQuery("insert into BookInformation values('" + iBookInfoId + "','" + iBookIndexId + "','" + strBookInfoName + "','" + iParentBookInfoId + "','" + iTypeId + "',1)", null);
                 c.getCount();
             }
@@ -189,7 +166,6 @@ public class Acts_three extends Fragment implements ResultCallBack {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.search, menu);
         MenuItem myActionMenuItem = menu.findItem(R.id.action_search);
 
         SearchView searchView = (SearchView) myActionMenuItem.getActionView();
@@ -312,9 +288,7 @@ public class Acts_three extends Fragment implements ResultCallBack {
                         // error in creating fragment
                         Log.e("ActSectionFragment", "Error in creating fragment");
                     }
-                    //Intent intent=new Intent(getActivity(), Act_Fragment_Container_two.class);
-                    //intent.putExtra("BookName", tvBookName.getText());
-                    //startActivity(intent);
+
                 }
             });
         }

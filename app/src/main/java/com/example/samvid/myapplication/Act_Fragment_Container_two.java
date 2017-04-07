@@ -52,7 +52,6 @@ public class Act_Fragment_Container_two extends AppCompatActivity implements Res
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
-//        toolbar.setBackgroundColor(getResources().getColor(R.color.acts));
         setSupportActionBar(toolbar);
 
         da= com.example.samvid.myapplication.DatabaseAccess.getInstance(this);
@@ -68,17 +67,7 @@ public class Act_Fragment_Container_two extends AppCompatActivity implements Res
         if(rows>0) {
             c.moveToFirst();
             iBoookid = c.getInt(c.getColumnIndex("BookId"));
-        }/*else
-        {
-            for(int i=0;i<globalList.getBooksSize();i++)
-            {
-                if(globalList.getBooks(i).strBookName.equals(strBookName))
-                {
-                    iBoookid=globalList.getBooks(i).getStrBookId();
-                    break;
-                }
-            }
-        }*/
+        }
 
         strURL=strURL+iBoookid;
 
@@ -114,12 +103,6 @@ public class Act_Fragment_Container_two extends AppCompatActivity implements Res
         c.close();
         db.close();
 
-        /*for (int i = 0; i < globalList.getBookIndexSize(); i++) {
-            String strBoookName = globalList.getBookIndex(i).getStrBookIndexName();
-            tabTitles.add(strBoookName);
-//            c.moveToNext();
-        }*/
-
         bookadapter=new Types(this,tabTitles,strBookName);
         rvType.setLayoutManager(new LinearLayoutManager(this));
         rvType.setAdapter(bookadapter);
@@ -144,7 +127,6 @@ public class Act_Fragment_Container_two extends AppCompatActivity implements Res
 
         SearchView searchView = (SearchView) myActionMenuItem.getActionView();
 
-//        searchView.setBackgroundResource(R.drawable.button_border);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -192,7 +174,6 @@ public class Act_Fragment_Container_two extends AppCompatActivity implements Res
                 int iBookIndexId=jsonObjectChild.getInt("BookIndexId");
                 String strBookName=jsonObjectChild.getString("BookIndexName");
 
-//                globalList.setBookIndex(new BookIndexModel(iBookId,iBookIndexId,strBookName));
                 Cursor c=db.rawQuery("insert into BookIndex values('"+iBookId+"','"+iBookIndexId+"','"+strBookName+"',1)",null);
                 c.getCount();
             }

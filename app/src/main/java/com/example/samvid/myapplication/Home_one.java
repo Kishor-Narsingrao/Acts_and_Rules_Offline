@@ -59,27 +59,8 @@ public class Home_one extends AppCompatActivity implements ResultCallBack {
 
         getSupportActionBar().setTitle("Acts and Rule");
 
-//        etSearch = (EditText) findViewById(R.id.etSearch);
-//        etSearch.setText("");
-
         da = com.example.samvid.myapplication.DatabaseAccess.getInstance(this);
 
-       /* etSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                bookadapter.getFilter().filter(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });*/
         readData();
     }
 
@@ -101,12 +82,6 @@ public class Home_one extends AppCompatActivity implements ResultCallBack {
         c.close();
         db.close();
 
-       /* for (int i = 0; i < globalList.getBooksSize(); i++) {
-            String strBoookName = globalList.getBooks(i).getStrBookName();
-            alBookInfo.add(strBoookName);
-//            c.moveToNext();
-        }*/
-
         rvCategory = (RecyclerView) findViewById(R.id.rvCategory);
 
         bookadapter = new Category(this, alBookInfo);
@@ -122,7 +97,6 @@ public class Home_one extends AppCompatActivity implements ResultCallBack {
     @Override
     protected void onRestart() {
         super.onRestart();
-//        etSearch.setText("");
     }
 
     @Override
@@ -133,7 +107,6 @@ public class Home_one extends AppCompatActivity implements ResultCallBack {
         MenuItem myActionMenuItem = menu.findItem(R.id.action_search);
 
         SearchView searchView = (SearchView) myActionMenuItem.getActionView();
-//        searchView.setBackgroundColor(getResources().getColor(R.color.white));
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -156,7 +129,6 @@ public class Home_one extends AppCompatActivity implements ResultCallBack {
         String jsonObjects = object;
 
         try {
-//            JSONObject jsonObject = new JSONObject(jsonObjects);
             JSONArray jsonArray = new JSONArray(jsonObjects);
             db = da.open();
             Cursor cursor = db.rawQuery("delete from Books", null);
@@ -165,12 +137,8 @@ public class Home_one extends AppCompatActivity implements ResultCallBack {
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObjectChild = jsonArray.getJSONObject(i);
-//                int strId = jsonObjectChild.getInt("$id");
                 int strBookId = jsonObjectChild.getInt("BookId");
                 String strBookName = jsonObjectChild.getString("BookName");
-
-//                alBooks.add(new BooksModel(strBookId,strBookName));
-//                globalList.setBooks(new BooksModel(strBookId,strBookName));
 
                 Cursor c = db.rawQuery("insert into Books values('" + strBookId + "','" + strBookName + "',1)", null);
                 c.getCount();
